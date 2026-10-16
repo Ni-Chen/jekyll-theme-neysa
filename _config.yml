@@ -1,0 +1,26 @@
+# Hide title of repository
+name: " "
+title: null
+description:
+# theme: jekyll-theme-neysa
+
+# Build settings
+
+markdown: kramdown # to show TOC
+kramdown:
+  input: GFM
+  hard_wrap: true
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 2..6 # TOC start from h2
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  parse_block_html: true # default for kramdown is false. This will enable using Markdown links
+
+sass:
+  sass_dir: _sass
+
+
+exclude:
+  - script

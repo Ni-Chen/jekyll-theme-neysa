@@ -1,0 +1,220 @@
+// Header (navbar) and footer, matching https://ni-chen.github.io
+// Markup: _includes/header.html and _includes/footer.html (Bootstrap 3 class names,
+// so assets/js/bootstrap.min.js can drive the mobile collapse menu).
+
+$chrome-font: Optima, Candara, Calibri, Arial, sans-serif;
+$chrome-gradient: linear-gradient(135deg, #5d8f74 0%, #77a88d 100%);
+$chrome-border: #4a7560;
+$chrome-breakpoint: 768px;
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Navbar
+// -----------------------------------------------------------------------------
+.navbar {
+  position: relative;
+  font-family: $chrome-font;
+  line-height: 1.5;
+  background: $chrome-gradient;
+  border-bottom: 1px solid #e8e8e8;
+  opacity: 0.95;
+
+  > .container-fluid {
+    max-width: 1082px;
+    margin: 0 auto;
+    padding: 10px 15px;
+  }
+
+  > .container-fluid::after,
+  .navbar-header::after,
+  .navbar-nav::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.navbar-brand {
+  float: left;
+  height: 80px;
+  padding: 10px 15px 14px;
+  font-size: 36px;
+  line-height: 50px;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+.navbar .navbar-nav {
+  padding-top: 50px;
+}
+
+.navbar-nav {
+  > li {
+    float: left;
+  }
+
+  > li > a {
+    display: block;
+    padding: 14px 15px;
+    font-size: 20px;
+    line-height: 22px;
+    border-radius: 3px;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+// Bootstrap collapse states
+.collapse {
+  display: none;
+
+  &.in {
+    display: block;
+  }
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+@media (min-width: $chrome-breakpoint) {
+  .navbar-header {
+    float: left;
+  }
+
+  .navbar-collapse {
+    float: right;
+  }
+
+  .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: $chrome-breakpoint - 1px) {
+  .navbar-brand {
+    height: 60px;
+    font-size: 26px;
+    line-height: 40px;
+  }
+
+  .navbar-toggle {
+    display: block;
+    float: right;
+    margin: 13px 15px 0 0;
+    padding: 9px 10px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .icon-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      background-color: #fff;
+    }
+
+    .icon-bar + .icon-bar {
+      margin-top: 4px;
+    }
+  }
+
+  // Expanded menu: white panel with dark links, as on the homepage
+  .navbar-collapse {
+    clear: both;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+
+  .navbar .navbar-nav {
+    padding: 5px 0;
+
+    > li {
+      float: none;
+    }
+  }
+
+  .navbar .navbar-nav > li > a {
+    padding: 10px 15px;
+    font-size: 18px;
+    color: #252525;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Footer
+// -----------------------------------------------------------------------------
+footer {
+  margin-top: 2.5rem;
+  padding: 18px 15px;
+  font-family: $chrome-font;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  background: $chrome-gradient;
+  border-top: 1px solid $chrome-border;
+
+  a {
+    color: #e2f0e8;
+  }
+
+  a:hover,
+  a:focus {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  &.fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+  }
+}

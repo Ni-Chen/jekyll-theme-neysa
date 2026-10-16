@@ -1,0 +1,92 @@
+<footer class="{% if site.footer_fixed %}fixed-bottom{% else %}sticky-bottom mt-5{% endif %}">
+  <div class="container text-center">
+    {% assign author_name = site.first_name | append: ' ' | append: site.last_name | strip %}
+    {% if author_name == '' %}{% assign author_name = 'Ni Chen' %}{% endif %}
+    &copy; Copyright {{ site.time | date: '%Y' }}, {{ author_name }}
+    {% if site.footer_text %}<br>{{ site.footer_text }}{% endif %}
+  </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="{{ site.url }}{{ site.baseurl }}/assets/js/bootstrap.min.js"></script>
+<script>
+  (function() {
+    if (window.jQuery) {
+      jQuery(function($) {
+        var $car = $('#carousel');
+        if ($car.length) {
+          $car.carousel({ interval: 5000, pause: 'hover' });
+        }
+      });
+    }
+  })();
+</script>
+
+<script>
+  // Mark native lazy media as loaded to trigger CSS fade-in.
+  // load/error do not bubble, so listen in the capture phase; this also covers media added later.
+  (function() {
+    function isLazy(el) {
+      return el && (el.tagName === 'IMG' || el.tagName === 'IFRAME') && el.getAttribute('loading') === 'lazy';
+    }
+    function onDone(e) {
+      if (isLazy(e.target)) e.target.classList.add('is-loaded');
+    }
+    document.addEventListener('load', onDone, true);
+    document.addEventListener('error', onDone, true);
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'), function(img) {
+      if (img.complete) img.classList.add('is-loaded');
+    });
+  })();
+</script>
+
+{% if content contains 'li-embed' %}
+<script>
+  // Auto-resize LinkedIn embed iframes when they post height messages
+  (function () {
+    function extractHeight(msg) {
+      var data = msg;
+      if (typeof data === 'string') {
+        try { data = JSON.parse(data); } catch (e) { /* not JSON */ }
+      }
+      var candidates = [];
+      if (data && typeof data === 'object') {
+        if (typeof data.height === 'number') candidates.push(data.height);
+        if (data.data && typeof data.data.height === 'number') candidates.push(data.data.height);
+        if (data.msg && typeof data.msg.height === 'number') candidates.push(data.msg.height);
+      }
+      for (var j = 0; j < candidates.length; j++) {
+        var h = candidates[j];
+        if (h >= 150 && h <= 2000) return h;
+      }
+      return null;
+    }
+
+    function isLinkedIn(origin) {
+      try {
+        return (new URL(origin).hostname || '').endsWith('linkedin.com');
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function findIframe(source) {
+      var iframes = document.querySelectorAll('iframe.li-embed, iframe[src*="linkedin.com/embed"]');
+      for (var i = 0; i < iframes.length; i++) {
+        if (iframes[i].contentWindow === source) return iframes[i];
+      }
+      return null;
+    }
+
+    window.addEventListener('message', function (event) {
+      if (!isLinkedIn(event.origin)) return;
+      var newH = extractHeight(event.data);
+      if (!newH) return;
+      var iframe = findIframe(event.source);
+      if (iframe) iframe.style.height = Math.round(newH) + 'px';
+    }, false);
+  })();
+</script>
+{% endif %}
+
+

@@ -1,0 +1,224 @@
+@use "rouge";
+@use "header-footer";
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li, table, th, td, hr, blockquote, pre, code, figure, figcaption {
+  box-sizing: border-box;
+}
+
+body {
+  color: #373737;
+  background: #ffffff;
+  font-size: 16px;
+  font-family: "Times New Roman", Calibri, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  // Full-width header and footer; footer stays at the bottom of short pages
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Page content between header and footer
+#main_content_wrap,
+body > .container-fluid {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem 20px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.8em;
+  color: #222222;
+  font-family: "Times New Roman", "Calibri", Helvetica, Arial, sans-serif;
+  line-height: 1.3;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h2 {
+  padding-top: 1rem;
+  padding-bottom: 0.7rem;
+  font-size: 1.75rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin: 0 0 1rem;
+  max-width: 100%;
+}
+
+a {
+  color: #0f79d0;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.5rem auto;
+}
+
+p img {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25rem 0;
+}
+
+blockquote {
+  color: #666;
+  margin: 1rem 0 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid #bbb;
+}
+
+ul, ol, dl {
+  margin: 0 0 1rem;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+ul { list-style: disc; }
+ol { list-style: decimal; }
+
+pre, code {
+  color: #222;
+  background: #f8f8f8;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-size: 0.875em;
+  border-radius: 4px;
+}
+
+pre {
+  padding: 0.9rem 1rem;
+  overflow: auto;
+  border: 1px solid #e5e5e5;
+  word-wrap: break-word;
+}
+
+code {
+  padding: 0.1rem 0.3rem;
+}
+
+pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+}
+
+hr {
+  height: 1px;
+  margin: 1rem 0 1.5rem;
+  border: none;
+  background: #e5e5e5;
+}
+
+figure {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+figcaption {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 1rem;
+  border-collapse: collapse;
+  border: 1px solid #d9d9d9;
+  word-wrap: break-word;
+}
+
+th, td {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d9d9d9;
+  vertical-align: top;
+  text-align: left;
+}
+
+th {
+  font-weight: 700;
+  background: #f7f7f7;
+}
+
+// Float the TOC right so the body text wraps around it
+#markdown-toc {
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+  padding: 0.75rem 1rem 0.75rem 1.75rem;
+  width: fit-content;
+  max-width: 300px;
+  font-size: 0.9rem;
+  background: #fafafa;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
+
+#markdown-toc::before {
+  content: "Table of Contents";
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+// Keep the h2 underline from running under the floated TOC
+h2 {
+  display: flow-root;
+}
+
+#markdown-toc ul,
+#markdown-toc ol {
+  margin: 0;
+}
+
+#markdown-toc li.toctree-l3:first-child {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  #main_content_wrap,
+  body > .container-fluid {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.3rem; }
+  h4 { font-size: 1.15rem; }
+
+  #markdown-toc {
+    float: none;
+    margin: 1rem 0;
+    width: auto;
+    max-width: none;
+  }
+}

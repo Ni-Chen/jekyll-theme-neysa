@@ -1,0 +1,8 @@
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+.ruby-lsp
+.DS_Store
+_site
+*.gem
+script/publish
