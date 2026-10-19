@@ -143,6 +143,14 @@ figcaption {
   text-align: center;
 }
 
+// Project page title block: title, venue, author and affiliation lines
+.text-center,
+h2.section-title,
+h5.pubname,
+#main_content nav {
+  text-align: center;
+}
+
 table {
   width: 100%;
   max-width: 100%;
