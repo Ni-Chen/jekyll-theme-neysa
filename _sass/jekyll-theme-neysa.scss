@@ -1,5 +1,5 @@
-@use "rouge";
-@use "header-footer";
+@import "rouge";
+@import "header-footer";
 
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li, table, th, td, hr, blockquote, pre, code, figure, figcaption {
   box-sizing: border-box;
