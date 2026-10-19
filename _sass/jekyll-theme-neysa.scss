@@ -70,17 +70,25 @@ a:focus {
   text-decoration: underline;
 }
 
+// Inline, so images written next to each other in a figure or <center> sit side by side
 img {
-  display: block;
   max-width: 100%;
   height: auto;
-  margin: 0.5rem auto;
+  vertical-align: middle;
 }
 
 p img {
   display: inline-block;
   vertical-align: middle;
   margin: 0.25rem 0;
+}
+
+// Small icons next to link text (PDF, GitHub)
+img.smallimg {
+  width: auto;
+  height: 16px;
+  margin: 0;
+  vertical-align: baseline;
 }
 
 blockquote {
